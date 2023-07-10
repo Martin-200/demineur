@@ -1,0 +1,10 @@
+body {
+  color: #F00;
+}
+
+#root [data-msw] [data-msw-header] [data-msw-title] {
+  font-size: 4em;
+}
+#root [data-msw] [data-msw-header] [data-msw-settings] input[type=number] {
+  width: 2em;
+}/*# sourceMappingURL=all.css.map */

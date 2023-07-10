@@ -1,0 +1,269 @@
+#root{
+    width: fit-content;
+    max-width: 100%;
+    margin: auto;
+    padding: 1em;
+    border-radius: .5em;
+    background-color: $white;
+    border: .15rem solid;
+    border-color: darken($color: $white, $amount: 5);
+
+    @media screen and (max-width: map-get($breakpoints, minesweeper-mobile)) {
+        width: 100% !important;
+        
+        [data-msw]{
+            [data-msw-header]{
+                [data-msw-title]{
+                    text-align: center !important;
+                }
+                
+                [data-msw-settings]{
+                    flex-direction: column-reverse;
+                    align-items: flex-start !important;
+                    gap: .5em;
+                }
+            }
+        }
+    }
+
+    [data-msw]{
+        width: 100%;
+        max-width: 100%;
+        color: darken($color: $white, $amount: 50);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        @mixin game-sizer{
+            min-width: 250px;
+            width: min(70dvw, 70dvh);
+            max-width: 100%;
+            margin: 0;
+            transition: all ease .2s;
+            
+            @media screen and (max-width: map-get($breakpoints, minesweeper-mobile)) {
+                width: 100% !important;
+            }
+        }
+
+        [data-msw-header]{
+            @include game-sizer;
+
+            [data-msw-title]{
+                display: block;
+                margin: 0 0 .125em 0;
+                width: 100%;
+                font-size: 2em;
+                font-weight: 700;
+                text-align: start;
+                color: $color-primary;
+            }
+
+            [data-msw-settings]{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                width: 100%;
+                text-align: start;
+                font-size: .95em;
+
+                > div{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: .3em;
+                }
+
+                span{
+                    user-select: none;
+                    white-space: nowrap;
+                    font-size: 1em;
+                    font-weight: 500;
+                }
+
+                button{
+                    appearance: none;
+                    margin: 0;
+                    padding: .35em .5em;
+                    border: 0;
+                    border-radius: .25em;
+                    background-color: transparent;
+                    cursor: pointer;
+                    font-size: 1em;
+                    font-weight: 500;
+                    letter-spacing: .02em;
+                    line-height: 1;
+                    transition: all ease .2s;
+                    color: $black;
+
+                    &:hover{
+                        background-color: darken($color: $white, $amount: 5);
+                    }
+
+                    &[data-msw-checked="true"], &:active{
+                        color: $color-primary;
+                    }
+                }
+
+                input{
+                    padding: .5em .75em;
+                    background-color: $white;
+                    border: 1px solid darken($color: $white, $amount: 30);
+                    border-radius: .25em;
+                    font-size: 1em;
+                    outline: 0;
+                    outline-offset: .2rem;
+
+                    &:hover{                    
+                        outline: .15rem solid $color-primary;
+                    }
+
+                    &[type="number"]{
+                        width: 2.5em;
+                        text-align: center;
+                    }
+                }
+            }
+
+            [data-msw-current]{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 1em;
+                width: 100%;
+                text-align: start;
+                font-size: .95em;
+                margin: .5em 0 0;
+
+                nav{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: .5em;
+
+                    button{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        $button-size: 3em;
+                        min-width: $button-size;
+                        width: $button-size;
+                        max-width: $button-size;
+                        min-height: $button-size;
+                        height: $button-size;
+                        max-height: $button-size;
+                        appearance: none;
+                        padding: 0;
+                        border: .15em solid;
+                        border-color: darken($color: $white, $amount: 30);
+                        border-radius: .35em;
+                        background-color: darken($color: $white, $amount: 10);
+                        color: $black;
+                        cursor: pointer;
+                        transition: background-color ease .2s, border-color ease .2s;
+
+                        &:hover, &[data-msw-checked="true"]{
+                            background-color: $color-secondary;
+                            border-color: $color-primary;
+                            color: $white;
+
+                            img{
+                                filter: brightness(0) invert(1);
+
+                                &[data-msw-effect-zoom-in-rotate-left]{
+                                    transform: scale(1.2) rotate(12deg);
+                                }
+    
+                                &[data-msw-effect-zoom-out]{
+                                    width: 70%;
+                                    height: auto;
+                                }
+    
+                                &[data-msw-effect-rotate-right]{
+                                    transform: rotate(-270deg);
+                                }
+                            }
+                        }
+
+                        img{
+                            width: 80%;
+                            user-select: none;
+                            font-size: .7em;
+                            transition: all ease .2s;
+                        }
+                    }
+                }
+
+                > div{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: $black;
+
+                    span{
+                        font-size: 1em;
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    img{
+                        width: 1.75em;
+                        user-select: none;
+                    }
+                }
+            }
+        }
+
+        [data-msw-content]{
+            @include game-sizer;
+            margin: .75em 0 0;
+
+            [data-msw-canvas-container]{
+                position: relative;
+                width: 100%;
+                padding-top: 100%;
+                overflow: hidden;
+
+                [data-msw-canvas]{
+                    // background-color: $black;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100% !important;
+                    height: 100% !important;
+                    cursor: pointer;
+                    user-select: none;
+                    outline: none;
+                    touch-action: manipulation;
+                }
+            }
+        }
+
+        [data-msw-footer]{
+            @include game-sizer;
+            margin: .75em 0 0;
+
+            [data-msw-restart]{
+                width: 100%;
+                appearance: none;
+                color: $white;
+                background-color: $color-primary;
+                margin: 0;
+                padding: .5em;
+                border: 0;
+                border-radius: .5em;
+                font-size: 1em;
+                font-weight: 400;
+                transition: all ease .2s;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: $color-secondary;
+                }
+            }
+        }
+    }
+}

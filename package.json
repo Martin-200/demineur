@@ -1,0 +1,11 @@
+{
+    "name": "demineur",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "sass": "sass --watch ./src/scss/mains/all.scss:./public/css/main.css --style compressed"
+    },
+    "author": "Martin Piolat",
+    "license": "ISC"
+}

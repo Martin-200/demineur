@@ -1,0 +1,22 @@
+@import '../utils/variables';
+@import '../utils/placeholders';
+@import '../utils/mixins';
+@import '../utils/functions';
+@import '../utils/breakpoints';
+@import '../utils/animations';
+
+@import '../base/global';
+
+@import '../components/buttons';
+
+@import '../layouts/header';
+@import '../layouts/footer';
+@import '../layouts/forms';
+@import '../layouts/modals';
+@import '../layouts/minesweeper';
+
+@import '../pages/home';
+
+@import '../themes/dark';
+
+$sass-error: 1;
